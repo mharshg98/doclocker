@@ -1,0 +1,62 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pydrive</title>
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+
+
+        <style>
+            #full-size{
+              height:100%;
+              width:100%;
+              overflow:hidden; /* or overflow:auto; if you want scrollbars */
+            }.bg-gradient{background: linear-gradient(135deg, rgb(86, 178, 214) 0%, rgb(82, 0, 19) 97%, rgb(47, 41, 60) 100%);}
+             html,body{margin: 0;padding:0;height: 100%}
+            .card-container{
+                border-radius: 12px;
+                background: rgba(255, 255, 255);
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="container-fluid bg-gradient justify-content-center" id="full-size">
+          <div class="row justify-content-center">
+                <img class="col-md-7" src="{% static 'images/illustration2.png' %}"/>
+          </div>
+                <div class="container-fluid" >
+                <div class="row justify-content-center">
+                        <form class="col-md-4 text-center justify-content-center card-container" action="get_entry" method="post">
+
+                            <div>
+
+                                <h4 class="pt-2 pb-2"> Get Started<span class="glyphicon glyphicon-envelope"></span></h4>
+                                <p class="text-muted">Type your registered email address</p>
+
+                                <div class="input-group mb-2 p-2">
+                                  <div class="input-group-prepend ">
+                                    <span class="input-group-text bg-info text-white" id="basic-addon1">@</span>
+                                  </div>
+                                  <input name="email" id="email" type="email" required class="form-control" placeholder="Email address" aria-label="Email" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 p-2">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text bg-info text-white" id="basic-addon1">*</span>
+                                  </div>
+                                  <input name="password" id="password" type="password" required minlength="8" class="form-control" placeholder="Password" aria-label="Email" aria-describedby="basic-addon1">
+                                </div>
+                                <input type="submit" name="submit" class="btn btn-primary btn-md mb-3" value="Login"/>
+                                <input type="submit" name="submit" class="btn btn-success btn-md mb-3" value="Signup"/><br/>
+                                <button data-toggle="modal" data-target="#forgotModal" class="btn bg-white text-info mb-1">Forgot password?</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+    </html>
