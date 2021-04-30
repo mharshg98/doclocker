@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
-
+from .models import Enroll_Data,Student
 
 # Create your views here.
 def logout(request):
@@ -24,9 +24,25 @@ def login(request):
     else:
         return render(request,'login.html')
 
-
+import xlrd
 def addstudent(request):
-    return render(request,'admindashboard/addstudent.html')
+    if request.method == 'POST':
+        file = request.FILES.get('enroll_list')
+        enroll_Data = Enroll_Data.objects.create(enroll_datasheet = file)
+        enroll_datasheet_path = enroll_Data.enroll_datasheet.path
+        wb = xlrd.open_workbook(enroll_datasheet_path)
+        sheet = wb.sheet_by_index(0)
+        print(sheet.nrows)
+        for i in range(1,sheet.nrows):
+            enroll=sheet.cell_value(i,0)
+            name=sheet.cell_value(i,2)
+            branch=sheet.cell_value(i,4)
+            section=sheet.cell_value(i,6)
+            student = Student.objects.create(enrollment = enroll,name=name,section=section,branch=branch)
+        print("hello")    
+        return render(request,'admindashboard/addstudent.html',{'message':'Data Saved Successfully'})
+    else:
+        return render(request,'admindashboard/addstudent.html')
 
 
 

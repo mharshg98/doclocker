@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'doclocker',
         'USER':'root',
-        'PASSWORD':'Nimit@051099',
+        'PASSWORD':'',
         'HOST':'localhost',
         'PORT':'3306',
     }
@@ -152,10 +152,13 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 2
+SITE_ID = 1
 #SITE_ID = 1 for harsh
 #SITE_ID = 2 for nimit
 
 
 LOGIN_REDIRECT_URL = '/redirect'
 LOGOUT_REDIRECT_URL = '/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
