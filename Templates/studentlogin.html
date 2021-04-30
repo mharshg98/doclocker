@@ -1,0 +1,56 @@
+{% load static %}
+{% load socialaccount %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Doc Locker</title>
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+
+
+        <style>
+            #full-size{
+              height:100%;
+              width:100%;
+              overflow:hidden; /* or overflow:auto; if you want scrollbars */
+            }.bg-gradient{background: linear-gradient(135deg, rgb(86, 178, 214) 0%, rgb(82, 0, 19) 97%, rgb(47, 41, 60) 100%);}
+             html,body{margin: 0;padding:0;height: 100%}
+            .card-container{
+                border-radius: 12px;
+                background: rgba(255, 255, 255);
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="container-fluid bg-gradient justify-content-center" id="full-size">
+          <div class="row justify-content-center">
+                <img class="col-md-7" src="{% static 'images/illustration2.png' %}"/>
+          </div>
+                <div class="container-fluid" >
+                <div class="row justify-content-center">
+                        <form class="col-md-4 text-center justify-content-center card-container" action="get_entry" method="post">
+
+                            <div>
+
+                                <h4 class="pt-2 pb-2"> Student Login<span class="glyphicon glyphicon-envelope"></span></h4>
+                                <p class="text-muted">Login with your registered college Email ID</p>
+
+  
+
+                                <div>
+  <a class="hollow button primary" href="{% provider_login_url 'google' %}">
+    <img width="15px" style="margin-bottom:3px; margin-right:5px" alt="Google login" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+    Sign in with Google
+  </a>
+</div>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+    </html>
