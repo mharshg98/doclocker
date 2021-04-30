@@ -24,4 +24,5 @@ urlpatterns = [
     path('',include('student.urls')),
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view()),
+
 ]
