@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pydrive</title>
+        <title>DocLocker</title>
 
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
 
@@ -29,28 +29,32 @@
           </div>
                 <div class="container-fluid" >
                 <div class="row justify-content-center">
-                        <form class="col-md-4 text-center justify-content-center card-container" action="get_entry" method="post">
-
+                        <form class="col-md-4 text-center justify-content-center card-container" action="" method="post">
+                          {% csrf_token %}
                             <div>
 
-                                <h4 class="pt-2 pb-2"> Get Started<span class="glyphicon glyphicon-envelope"></span></h4>
-                                <p class="text-muted">Type your registered email address</p>
-
+                                <h4 class="pt-2 pb-2"> Admin Login<span class="glyphicon glyphicon-envelope"></span></h4>
+                                <p class="text-muted">Type your Username and Password</p>
+                                <div>
+                                  {% for message in messages %}
+                                  <h3>{{message}}</h3>
+                                  {% endfor %}
+                              </div>
                                 <div class="input-group mb-2 p-2">
                                   <div class="input-group-prepend ">
                                     <span class="input-group-text bg-info text-white" id="basic-addon1">@</span>
                                   </div>
-                                  <input name="email" id="email" type="email" required class="form-control" placeholder="Email address" aria-label="Email" aria-describedby="basic-addon1">
+                                  <input name="username" id="username" type="text" required class="form-control" placeholder="Username" aria-label="Email" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 p-2">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text bg-info text-white" id="basic-addon1">*</span>
                                   </div>
-                                  <input name="password" id="password" type="password" required minlength="8" class="form-control" placeholder="Password" aria-label="Email" aria-describedby="basic-addon1">
+                                  <input name="password" id="password" type="password" required minlength="5" class="form-control" placeholder="Password" aria-label="Email" aria-describedby="basic-addon1">
                                 </div>
                                 <input type="submit" name="submit" class="btn btn-primary btn-md mb-3" value="Login"/>
-                                <input type="submit" name="submit" class="btn btn-success btn-md mb-3" value="Signup"/><br/>
-                                <button data-toggle="modal" data-target="#forgotModal" class="btn bg-white text-info mb-1">Forgot password?</button>
+
+
                             </div>
                         </form>
                 </div>
