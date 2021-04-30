@@ -17,12 +17,18 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return HttpResponse('Loggend in Successfully !!')
+            return redirect('addstudent')
         else:
             messages.info(request,"Invalid Credentials !!")
             return redirect('/adminlogin')
     else:
         return render(request,'login.html')
+
+
+def addstudent(request):
+    return render(request,'admindashboard/addstudent.html')
+
+
 
 def register(request):
     if request.method == 'POST':
