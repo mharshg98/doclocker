@@ -70,3 +70,6 @@ def register(request):
             return redirect('register')
     else:
         return render(request,'register.html')
+
+def updatemarksheet(request):
+    return render(request,'admindashboard/uploadmarksheet.html')
