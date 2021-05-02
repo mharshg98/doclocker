@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
-from .models import Enroll_Data,Student
+from .models import Enroll_Data,Student,Marksheet
 
 # Create your views here.
 def logout(request):
@@ -73,3 +73,30 @@ def register(request):
 
 def updatemarksheet(request):
     return render(request,'admindashboard/uploadmarksheet.html')
+import json
+def updatemarksheetdata(request):
+    marksheet_data=json.loads(request.POST.get('dict'))
+    semester=request.POST.get('sem')
+    print(marksheet_data,semester)
+    for i in marksheet_data:
+        print(i)
+        student=Student.objects.filter(enrollment=i)
+        print(student)
+        marksheet=Marksheet.objects.get_or_create(student_id=student[0])
+        marksheet=marksheet[0]
+        if(marksheet.marksheet_URL==None):
+            print("in if")
+            d={}
+            d[semester]=marksheet_data[i]
+            d_json=json.dumps(d)
+            marksheet.marksheet_URL=d_json
+            marksheet.save()
+        else:
+            print("in else")
+            d=marksheet.marksheet_URL
+            d_dict=json.loads(d)
+            d_dict[semester]=marksheet_data[i]
+            d_json=json.dumps(d_dict)
+            marksheet.marksheet_URL=d_json
+            marksheet.save()
+    return HttpResponse("done uploaded")

@@ -4,173 +4,22 @@
 
 <head>
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
-<script>
-function readURL(input) {
-  if (input.files && input.files[0]) {
 
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-      $('.image-upload-wrap').hide();
-
-      $('.file-upload-image').attr('src', e.target.result);
-      $('.file-upload-content').show();
-
-      $('.image-title').html(input.files[0].name);
-    };
-
-    reader.readAsDataURL(input.files[0]);
-
-  } else {
-    removeUpload();
-  }
-}
-
-function removeUpload() {
-  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-  $('.file-upload-content').hide();
-  $('.image-upload-wrap').show();
-}
-$('.image-upload-wrap').bind('dragover', function () {
-    $('.image-upload-wrap').addClass('image-dropping');
-  });
-  $('.image-upload-wrap').bind('dragleave', function () {
-    $('.image-upload-wrap').removeClass('image-dropping');
-});
-
-</script>
-
-<style>
-body {
-  font-family: sans-serif;
-  background-color: #eeeeee;
-}
-
-.file-upload {
-  background-color: #ffffff;
-  width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.file-upload-btn {
-  width: 100%;
-  margin: 0;
-  color: #fff;
-  background: #BA55D3;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  border-bottom: 4px solid #BA55D3;
-  transition: all .2s ease;
-  outline: none;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.file-upload-btn:hover {
-  background: #BA55D3;
-  color: #ffffff;
-  transition: all .2s ease;
-  cursor: pointer;
-}
-
-.file-upload-btn:active {
-  border: 0;
-  transition: all .2s ease;
-}
-
-.file-upload-content {
-  display: none;
-  text-align: center;
-}
-
-.file-upload-input {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  outline: none;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.image-upload-wrap {
-  margin-top: 20px;
-  border: 4px dashed #BA55D3;
-  position: relative;
-}
-
-.image-dropping,
-.image-upload-wrap:hover {
-  background-color: #BA55D3;
-  border: 4px dashed #ffffff;
-}
-
-.image-title-wrap {
-  padding: 0 15px 15px 15px;
-  color: #222;
-}
-
-.drag-text {
-  text-align: center;
-}
-
-.drag-text h3 {
-  font-weight: 100;
-  text-transform: uppercase;
-  color: #E6E6FA;
-  padding: 60px 0;
-}
-
-.file-upload-image {
-  max-height: 200px;
-  max-width: 200px;
-  margin: auto;
-  padding: 20px;
-}
-
-.remove-image {
-  width: 200px;
-  margin: 0;
-  color: #fff;
-  background: #cd4535;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  border-bottom: 4px solid #b02818;
-  transition: all .2s ease;
-  outline: none;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.remove-image:hover {
-  background: #c13b2a;
-  color: #ffffff;
-  transition: all .2s ease;
-  cursor: pointer;
-}
-
-.remove-image:active {
-  border: 0;
-  transition: all .2s ease;
-}
-
-</style>
 
 
   <meta charset="utf-8" />
-  
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Material Dashboard by Creative Tim
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="{% static 'css/material-dashboard.css' %}" rel="stylesheet" />
@@ -191,35 +40,35 @@ body {
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          
+
           <li class="nav-item">
             <a class="nav-link" href="addstudent">
               <i class="material-icons">person</i>
               <p>Add Students</p>
             </a>
           </li>
-		  
-		  <li class="nav-item active ">
+
+          <li class="nav-item active ">
             <a class="nav-link" href="">
               <i class="material-icons">unarchive</i>
               <p>Upload Marksheets</p>
             </a>
           </li>
-		  
-		  <li class="nav-item">
+
+          <li class="nav-item">
             <a class="nav-link" href="./user.html">
               <i class="material-icons">content_paste</i>
               <p>Show Students</p>
             </a>
           </li>
-		  
-		  <li class="nav-item">
+
+          <li class="nav-item">
             <a class="nav-link" href="./user.html">
               <i class="material-icons">unarchive</i>
               <p>Upload Reciepts</p>
             </a>
           </li>
-          
+
         </ul>
       </div>
     </div>
@@ -228,29 +77,31 @@ body {
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Add Students</a>
+            <a class="navbar-brand" href="javascript:;">Upload Marksheets</a>
           </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+            aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            
+
             <ul class="navbar-nav">
-              
-              
+
+
               <li class="nav-item dropdown">
-                <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
                     Account
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  
-                  
+
+
                   <a class="dropdown-item" href="#">Log out</a>
                 </div>
               </li>
@@ -265,55 +116,186 @@ body {
             <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Add Students</h4>
-                  <p class="card-category">To add students in database upload CSV File</p>
+                  <h4 class="card-title">Upload Marksheets</h4>
+                  <p class="card-category">Upload marksheets in enrollment_no.pdf format</p>
                 </div>
                 <div class="card-body">
-                  <form method="POST" action="" enctype="multipart/form-data">
-                  {% csrf_token %}
-                    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<div class="file-upload">
-  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add CSV</button>
 
-  <div class="image-upload-wrap">
-    <input name="enroll_list" id"=enroll_list" class="file-upload-input" type='file' onchange="readURL(this);" accept=".csv,.xls,xlsx" />
-    <div class="drag-text">
-      <h3>Drag and drop a CSV File</h3>
-    </div>
-  </div>
-  <div class="file-upload-content">
-    <br>
-    <div class="image-title-wrap">
-      <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
-    </div>
-  </div>
-  <br>
-  
-</div>
-<button class="file-upload-btn" type="submit" >Submit</button>
+                  <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+                  <br>
+                  <br>
 
-                  </form>
+                  <select id="semester" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option>Select Semester</option>
+                    <option value="Sem1">Sem 1</option>
+                    <option value="Sem2">Sem 2</option>
+                    <option value="Sem3">Sem 3</option>
+                    <option value="Sem4">Sem 4</option>
+                    <option value="Sem5">Sem 5</option>
+                    <option value="Sem6">Sem 6</option>
+                    <option value="Sem7">Sem 7</option>
+                    <option value="Sem8">Sem 8</option>
+                  </select>
+                  <br>
+                  <br>
+                  <input name="filesToUpload[]" id="filesToUpload" type="file" multiple onchange="listfile()"
+                    accept=".pdf" />
+                  <br>
+                  <span id="message"></span <br>
+                  <br>
+                  <button class="btn btn-primary pull-right" onclick="Uploadmarksheet()">Submit</button>
+
+
 
                   {{message}}
                 </div>
               </div>
             </div>
-			
-			
-            
+            <div class="col-md-4">
+              <h3>Selected Files</h3>
+
+              <ul id="fileList" style="height:50%; overflow:hidden; overflow-y:scroll;"></ul>
+
+
+            </div>
+
+
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
-  
-  
+
+
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/popper.min.js' %}"></script>
   <script src="{% static 'js/bootstrap-material-design.min.js' %}"></script>
-  
-  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+    integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+    integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous">
+  </script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-storage.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyAnFketNLScnGnFo6MM5q0gEwXNq1Npowg",
+      authDomain: "test-project-4e8c3.firebaseapp.com",
+      databaseURL: "https://test-project-4e8c3-default-rtdb.firebaseio.com",
+      projectId: "test-project-4e8c3",
+      storageBucket: "test-project-4e8c3.appspot.com",
+      messagingSenderId: "14384807176",
+      appId: "1:14384807176:web:729450983f624e35a980bd",
+      measurementId: "G-ENLGEPMXTN"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+
+    function Uploadmarksheet() {
+      var input = document.getElementById('filesToUpload');
+      var message = document.getElementById('message');
+      message.innerHTML = "Uploading Started";
+      for (var i = 0; i < input.files.length; i++) {
+        console.log(input.files[i].name);
+        var pdffile = input.files[i];
+        uploadImageAsPromise(pdffile, input.files.length);
+      }
+    }
+    var dict = {};
+    var count = 0;
+    var sem=document.getElementById('semester').value;
+    function uploadImageAsPromise(imageFile, size) {
+      return new Promise(function (resolve, reject) {
+        console.log("in promise");
+        var storageRef = firebase.storage().ref("marksheet/" + imageFile.name);
+
+        //Upload file
+        var task = storageRef.put(imageFile);
+
+        //Update progress bar
+        task.on('state_changed',
+          function progress(snapshot) {
+
+            var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+            console.log(percentage);
+
+          },
+          function error(err) {
+
+          },
+          function complete(x) {
+
+            task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+              console.log('File available at', downloadURL);
+              var filename = imageFile.name.slice(0, 7);
+              dict[filename]=downloadURL;
+              
+              count = count + 1;
+              if (count == size) {
+                var message = document.getElementById('message');
+                message.innerHTML = "Uploaded Succesfully";
+                
+                console.log(dict);
+                UploadmarksheetData(size);
+              }
+            });
+          }
+        );
+      });
+    }
+
+    function UploadmarksheetData(size)
+    {  console.log(sem)
+    var sem=document.getElementById('semester').value;
+    var dictJSON=JSON.stringify(dict);
+      var csrftoken = Cookies.get('csrftoken');
+      $.post('updatemarksheetdata', { 'dict' : dictJSON, 'sem':sem ,'csrfmiddlewaretoken':  csrftoken} ,function(data, status){
+            console.log(data);
+            if(!alert(size+" Files Uploaded Succesfully")){location.href = '';}
+          
+        });
+
+    }
+  </script>
+
+
+  <script>
+    function listfile() {
+      var input = document.getElementById('filesToUpload');
+      var list = document.getElementById('fileList');
+
+
+      //for every file...
+      for (var x = 0; x < input.files.length; x++) {
+        //add to list
+        var li = document.createElement('li');
+        li.innerHTML = 'File ' + (x + 1) + ':  ' + input.files[x].name;
+
+        list.append(li);
+      }
+
+    }
+  </script>
+
+
 </body>
 
 </html>

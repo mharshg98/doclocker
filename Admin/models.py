@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django_mysql.models import JSONField
 # Create your models here.
 class Student(models.Model):
     choices = ( ("CIVIENG_FT" , "CIVIENG_FT"), ("COMPENG_FT" , "COMPENG_FT"), ("ECIENG_FT", "ECIENG_FT"), ("ECTELEG_FT", "ECTELEG_FT"), ("ITENG_FT", "ITENG_FT"), ("MECHENG_FT", "MECHENG_FT"),  )
@@ -19,3 +20,8 @@ class Enroll_Data(models.Model):
     sheet_id = models.AutoField(primary_key = True)
     date = models.DateTimeField(default = timezone.now)
     enroll_datasheet = models.FileField(upload_to = 'enroll_datasheets')
+
+class Marksheet(models.Model):
+    student_id=models.ForeignKey(Student, on_delete=models.CASCADE, null=False)
+    marksheet_URL=models.JSONField(null=True)
+
