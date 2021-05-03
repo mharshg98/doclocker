@@ -71,10 +71,10 @@
             </a>
           </li>
 
-          <li class="nav-item active ">
-            <a class="nav-link" href="">
+          <li class="nav-item">
+            <a class="nav-link" href="updatemarksheet">
               <i class="material-icons">unarchive</i>
-              <p>Upload Marksheets</p>
+              <p>Upload Marksheet</p>
             </a>
           </li>
 
@@ -85,8 +85,8 @@
             </a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="updatereceipt">
+          <li class="nav-item active">
+            <a class="nav-link" href="">
               <i class="material-icons">unarchive</i>
               <p>Upload Reciepts</p>
             </a>
@@ -100,7 +100,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Upload Marksheets</a>
+            <a class="navbar-brand" href="javascript:;">Upload receipts</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -139,8 +139,8 @@
             <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Upload Marksheets</h4>
-                  <p class="card-category">Upload marksheets in enrollment_no.pdf format</p>
+                  <h4 class="card-title">Upload Receipts</h4>
+                  <p class="card-category">Upload Receipts in enrollment_no.pdf format</p>
                 </div>
                 <div class="card-body">
 
@@ -167,7 +167,7 @@
                   <span id="message"></span>
                   <div id="loader" class="loader"></div>
                   <button id="upload_button" class="btn btn-primary pull-right"
-                    onclick="Uploadmarksheet()">Upload</button>
+                    onclick="Uploadreceipt()">Upload</button>
                   <button id="continue" class="btn btn-primary pull-right" onclick="Reload()">Continue</button>
                 </div>
               </div>
@@ -236,7 +236,7 @@
       location.href = '';
     }
 
-    function Uploadmarksheet() {
+    function Uploadreceipt() {
 
       document.getElementById('loader').style.visibility = 'visible';
       var input = document.getElementById('filesToUpload');
@@ -258,7 +258,7 @@
       return new Promise(function (resolve, reject) {
         document.getElementById('loader').style.visibility = 'visible';
         console.log("in promise");
-        var storageRef = firebase.storage().ref("marksheet/" + imageFile.name);
+        var storageRef = firebase.storage().ref("receipt/" + imageFile.name);
 
         //Upload file
         var task = storageRef.put(imageFile);
@@ -287,7 +287,7 @@
                 message.innerHTML = "Uploaded Succesfully";
 
                 console.log(dict);
-                UploadmarksheetData(size);
+                UploadreceiptData(size);
               }
             });
           }
@@ -295,14 +295,14 @@
       });
     }
 
-    function UploadmarksheetData(size) {
+    function UploadreceiptData(size) {
       console.log(sem)
 
       var sem = document.getElementById('semester').value;
       var dictJSON = JSON.stringify(dict);
       var csrftoken = Cookies.get('csrftoken');
       var list = document.getElementById('fileList');
-      $.post('updatemarksheetdata', {
+      $.post('updatereceiptdata', {
         'dict': dictJSON,
         'sem': sem,
         'csrfmiddlewaretoken': csrftoken

@@ -24,4 +24,5 @@ class Enroll_Data(models.Model):
 class Marksheet(models.Model):
     student_id=models.ForeignKey(Student, on_delete=models.CASCADE, null=False)
     marksheet_URL=models.JSONField(null=True)
+    receipt_URL=models.JSONField(null=True)
 

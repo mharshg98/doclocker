@@ -192,8 +192,8 @@ body {
       <div class="sidebar-wrapper">
         <ul class="nav">
           
-          <li class="nav-item active ">
-            <a class="nav-link" href="">
+          <li class="nav-item">
+            <a class="nav-link" href="addstudent">
               <i class="material-icons">person</i>
               <p>Add Students</p>
             </a>
@@ -206,8 +206,8 @@ body {
             </a>
           </li>
 		  
-		  <li class="nav-item">
-            <a class="nav-link" href="showstudent">
+		  <li class="nav-item active">
+            <a class="nav-link" href="">
               <i class="material-icons">content_paste</i>
               <p>Show Students</p>
             </a>
@@ -228,7 +228,7 @@ body {
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Add Students</a>
+            <a class="navbar-brand" href="javascript:;">Students</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -262,51 +262,68 @@ body {
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Add Students</h4>
-                  <p class="card-category">To add students in database upload CSV File</p>
+                  <h4 class="card-title ">Students</h4>
+                  <p class="card-category">Institute of Engineering and Technology, DAVV</p>
                 </div>
                 <div class="card-body">
-                  <form method="POST" action="" enctype="multipart/form-data">
-                  {% csrf_token %}
-                    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<div class="file-upload">
-  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add CSV</button>
-
-  <div class="image-upload-wrap">
-    <input name="enroll_list" id"=enroll_list" class="file-upload-input" type='file' onchange="readURL(this);" accept=".csv,.xls,xlsx" />
-    <div class="drag-text">
-      <h3>Drag and drop a CSV File</h3>
-    </div>
-  </div>
-  <div class="file-upload-content">
-    <br>
-    <div class="image-title-wrap">
-      <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
-    </div>
-  </div>
-  <br>
-  
-</div>
-<button class="file-upload-btn" type="submit" >Submit</button>
-
-                  </form>
-
-                  {{message}}
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          Enrollment No.
+                        </th>
+                        <th>
+                          Name
+                        </th>
+                        <th>
+                          Session
+                        </th>
+                        <th>
+                          Branch
+                        </th>
+                        <th>
+                          Email
+                        </th>
+                        <th>
+                          Mobile
+                        </th>
+                      </thead>
+                      <tbody>
+                      {% for i in student %}
+                        <tr>
+                          <td>
+                            {{i.enrollment}}
+                          </td>
+                          <td>
+                            {{i.name}}
+                          </td>
+                          <td>
+                            {{i.session}}
+                          </td>
+                          <td>
+                            {{i.branch}}
+                          </td>
+                          <td class="text-primary">
+                            {{i.email}}
+                          </td>
+                          <td class="text-primary">
+                            {{i.mobile}}
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
-			
-			
             
           </div>
         </div>
       </div>
-      
-    </div>
-  </div>
   
   
   <script src="{% static 'js/jquery.min.js' %}"></script>

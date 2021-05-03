@@ -1,4 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse
+from django.http import JsonResponse
+from rest_framework.response import Response
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from .models import Enroll_Data,Student,Marksheet
@@ -73,30 +75,79 @@ def register(request):
 
 def updatemarksheet(request):
     return render(request,'admindashboard/uploadmarksheet.html')
+
+def updatereceipt(request):
+    return render(request,'admindashboard/uploadreceipt.html')
 import json
+
 def updatemarksheetdata(request):
     marksheet_data=json.loads(request.POST.get('dict'))
     semester=request.POST.get('sem')
     print(marksheet_data,semester)
+    accept=[]
+    reject=[]
     for i in marksheet_data:
         print(i)
         student=Student.objects.filter(enrollment=i)
         print(student)
         marksheet=Marksheet.objects.get_or_create(student_id=student[0])
         marksheet=marksheet[0]
-        if(marksheet.marksheet_URL==None):
-            print("in if")
-            d={}
-            d[semester]=marksheet_data[i]
-            d_json=json.dumps(d)
-            marksheet.marksheet_URL=d_json
-            marksheet.save()
-        else:
-            print("in else")
-            d=marksheet.marksheet_URL
-            d_dict=json.loads(d)
-            d_dict[semester]=marksheet_data[i]
-            d_json=json.dumps(d_dict)
-            marksheet.marksheet_URL=d_json
-            marksheet.save()
-    return HttpResponse("done uploaded")
+        try:
+            if(marksheet.marksheet_URL==None):
+                print("in if")
+                d={}
+                d[semester]=marksheet_data[i]
+                d_json=json.dumps(d)
+                marksheet.marksheet_URL=d_json
+                marksheet.save()
+            else:
+                print("in else")
+                d=marksheet.marksheet_URL
+                d_dict=json.loads(d)
+                d_dict[semester]=marksheet_data[i]
+                d_json=json.dumps(d_dict)
+                marksheet.marksheet_URL=d_json
+                marksheet.save()
+            accept.append(i)
+        except:
+            reject.append(i)
+    response={'accept':accept,'reject':reject}
+    print(response)
+    return HttpResponse(json.dumps(response))
+
+def updatereceiptdata(request):
+    receipt_data=json.loads(request.POST.get('dict'))
+    semester=request.POST.get('sem')
+    accept=[]
+    reject=[]
+    for i in receipt_data:
+        student=Student.objects.filter(enrollment=i)
+        receipt=Marksheet.objects.get_or_create(student_id=student[0])
+        receipt=receipt[0]
+        try:
+            if(receipt.receipt_URL==None):
+                print("in if")
+                d={}
+                d[semester]=receipt_data[i]
+                d_json=json.dumps(d)
+                receipt.receipt_URL=d_json
+                receipt.save()
+            else:
+                print("in else")
+                d=receipt.receipt_URL
+                d_dict=json.loads(d)
+                d_dict[semester]=receipt_data[i]
+                d_json=json.dumps(d_dict)
+                receipt.receipt_URL=d_json
+                receipt.save()
+            accept.append(i)
+        except:
+            reject.append(i)
+    response={'accept':accept,'reject':reject}
+    print(response)
+    return HttpResponse(json.dumps(response))
+
+def showstudent(request):
+    student=Student.objects.all().order_by('-session','branch','name')
+
+    return render(request,'admindashboard/showstudent.html',{'student':student})
