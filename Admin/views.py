@@ -33,6 +33,7 @@ def addstudent(request):
         file = request.FILES.get('enroll_list')
         enroll_Data = Enroll_Data.objects.create(enroll_datasheet = file)
         enroll_datasheet_path = enroll_Data.enroll_datasheet.path
+        
         '''
         wb = xlrd.open_workbook(enroll_datasheet_path)
         sheet = wb.sheet_by_index(0)
