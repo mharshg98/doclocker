@@ -1,0 +1,78 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DocLocker</title>
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            #full-size{
+              height:100%;
+              width:100%;
+              overflow:hidden; /* or overflow:auto; if you want scrollbars */
+            }.bg-gradient{background: linear-gradient(135deg, rgb(86, 178, 214) 0%, rgb(82, 0, 19) 97%, rgb(47, 41, 60) 100%);}
+             html,body{margin: 0;padding:0;height: 100%}
+            .card-container{
+                border-radius: 12px;
+                background: rgba(255, 255, 255);
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="container-fluid bg-gradient justify-content-center" id="full-size">
+          <div class="row justify-content-center">
+                <img class="col-md-7" src="{% static 'images/illustration2.png' %}"/>
+          </div>
+                <div class="container-fluid" >
+                <div class="row justify-content-center">
+                        <form class="col-md-4 text-center justify-content-center card-container" action="" method="post">
+                          {% csrf_token %}
+                            <div>
+
+                                <h4 class="pt-2 pb-2"> Registration Form<span class="glyphicon glyphicon-envelope"></span></h4>
+                                <p class="text-muted">Type the below details</p>
+                                {% if flag %}
+                               <p class="text-muted" style="color=red;">Enrollment no. Not Found</p>
+                                {% endif %}
+                                <div class="input-group mb-2 p-2">
+                                  
+                                  <input name="enrollment" id="enrollment" type="text" required minlength="7" maxlength="7" class="form-control" placeholder="Enrollment no." aria-label="Enrollment" aria-describedby="basic-addon1">
+                                </div>
+
+                                 <div class="input-group mb-2 p-2">
+                                  
+                                  <select id="session" name="session" required class="form-control">
+                    <option>Select Session</option>
+                    <option value="20">2020-24</option>
+                    <option value="19">2019-23</option>
+                    <option value="18">2018-22</option>
+                    <option value="17">2017-21</option>
+                    <option value="16">2016-20</option>
+                    <option value="15">2015-19</option>
+                    <option value="14">2014-18</option>
+                    <option value="13">2013-17</option>
+                  </select>
+                                </div>
+                                
+                                <div class="input-group mb-2 p-2">
+                                  
+                                  <input name="mobile" id="mobile" type="phone" required minlength="10" maxlength="10" class="form-control" placeholder="mobile" aria-label="mobile" aria-describedby="basic-addon1">
+                                </div>
+                                <input type="submit" name="submit" class="btn btn-primary btn-md mb-3" value="submit"/>
+
+
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+    </html>

@@ -157,7 +157,7 @@ SITE_ID = 1
 #SITE_ID = 2 for nimit
 
 
-LOGIN_REDIRECT_URL = '/redirect'
+LOGIN_REDIRECT_URL = '/redirect1'
 LOGOUT_REDIRECT_URL = '/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')

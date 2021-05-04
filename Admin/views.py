@@ -27,11 +27,13 @@ def login(request):
         return render(request,'login.html')
 
 import xlrd
+import pandas as pd
 def addstudent(request):
     if request.method == 'POST':
         file = request.FILES.get('enroll_list')
         enroll_Data = Enroll_Data.objects.create(enroll_datasheet = file)
         enroll_datasheet_path = enroll_Data.enroll_datasheet.path
+        '''
         wb = xlrd.open_workbook(enroll_datasheet_path)
         sheet = wb.sheet_by_index(0)
         print(sheet.nrows)
@@ -42,6 +44,16 @@ def addstudent(request):
             section=sheet.cell_value(i,6)
             student = Student.objects.create(enrollment = enroll,name=name,section=section,branch=branch)
         print("hello")    
+        return render(request,'admindashboard/addstudent.html',{'message':'Data Saved Successfully'})'''
+        import pandas as pd
+        df = pd.read_excel (enroll_datasheet_path)
+        print(df)
+        for i in df.itertuples():
+            enroll=i[1]
+            name=i[3]
+            branch=i[5]
+            section=i[7]
+            student = Student.objects.create(enrollment = enroll,name=name,section=section,branch=branch)
         return render(request,'admindashboard/addstudent.html',{'message':'Data Saved Successfully'})
     else:
         return render(request,'admindashboard/addstudent.html')

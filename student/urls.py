@@ -4,6 +4,8 @@ from student import views
 
 urlpatterns = [
     path('',views.login,name='login'),
-    path('redirect',views.redirect,name='redirect'),
+    path('redirect1',views.redirect1,name='redirect1'),
+    path('dashboard',views.dashboard,name='dashboard'),
+    path('receipt',views.receipt,name='receipt'),
 ]
 
