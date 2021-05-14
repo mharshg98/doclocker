@@ -26,3 +26,9 @@ class Marksheet(models.Model):
     marksheet_URL=models.JSONField(null=True)
     receipt_URL=models.JSONField(null=True)
 
+class Subjects(models.Model):
+    sem=models.IntegerField()
+    sub_name=models.CharField(max_length=50)
+    branch=models.CharField(max_length=5)
+    theory_credit=models.IntegerField()
+    practical_credit=models.IntegerField()

@@ -62,6 +62,7 @@
                         <p class="font-weight-bold">User Profile</p>
                     </a>
                 </li>
+
                 <li class="menu-item" id="settings-tab" onclick="">
                     <a href="{{ request.url }}/pointer">
                         <i class="fa fa-calculator" style="font-size:24px"></i>
@@ -74,8 +75,13 @@
 
     <nav class="navbar navbar-expand-lg navbar-absolute" style="z-index: 1;top:0;background: #141e30;">
         <div class="container-fluid">
+
+
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav">
+
+
+
                     <li class="nav-item ml-2">
                         <a class="nav-link" href="{{ request.url }}/logout">
                             <i class="fas fa-sign-out fa icon"></i>
@@ -83,6 +89,7 @@
                         </a>
                     </li>
                 </ul>
+
             </div>
         </div>
     </nav>
@@ -96,26 +103,53 @@
             <div class="container-fluid">
                 <div class="card text-center">
                     <div>
-                        <h5 class="card-title p-3 notch text-red text-center mt-0" style="width: fit-content"><b>Your
-                                Marksheets</b></h5>
+                        <h5 class="card-title p-3 notch text-red text-center mt-0" style="width: fit-content">
+                            <b>Evaluated Result</b></h5>
                     </div>
-                    <div class="row justify-content-center" id="files-container">
+                    <table class="table table-borderless table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Subjects</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                    {% if flag %}
-                        {% for i, j in sem_url %}
-                        <div id="file-card" class="col-md-2 m-2 text-center p-0 rounded border border-default">
-                            <img src="{% static 'images/file_bg.svg' %}" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">{{i}}</h5>
+                            {% for i in subject %}
+                            <tr>
 
-                                <a href="{{j}}" target="_blank" class="btn btn-primary">Download</a>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    {% else %}
-                        <p>No Files Found</p>
-                    {% endif %}
-                    </div>
+                                <td>{{i.sub_name}}</td>
+
+                                {% if i.theory_credit == 1 %}
+                                <td>
+                                    Theory
+                                </td>
+                                {% endif %}
+
+                                {% if i.practical_credit == 1 %}
+                                <td>
+                                    Practical
+                                </td>
+                                {% endif %}
+                                <td>
+                                    {{i.grade}}
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <table class="table-info" style="background-color:#3090C7;">
+                    <tbody>
+                        <tr style="height:50px">
+                            <td><h4><b>{{SGPA}} SGPA</b></h4></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+
                 </div>
             </div>
 
@@ -128,81 +162,11 @@
     </div>
     </div>
 
-    <!--Folder Modal -->
-    <div class="modal fade" id="folderModal" tabindex="-1" role="dialog" aria-labelledby="folderModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="FolderModalLabel">Create new folder</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
 
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Folder name</label>
-                        <input type="text" class="form-control" id="foldernamebox">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Select Parent Folder</label>
-                        <select class="form-control" id="folderOptions2">
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"
-                        onclick="saveFolder({{ request.session.user_id }})">Save
-                        changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="folderModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="FolderModalLabel">Share with people</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
 
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Type email address:(must be registered)</label>
-                        <div class="d-flex">
-                            <input type="email" required class="form-control mr-1" id="share_emailbox">
-                            <button class="btn btn-info m-0" onclick="checkAndShare()">Share</button>
-                        </div>
 
-                    </div>
-                    <div class="col-md-12">
-                        <table class="table table-hover">
-                            <thead class="bg-dark text-white">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Email</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="shared-container">
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 

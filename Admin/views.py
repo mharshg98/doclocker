@@ -162,5 +162,4 @@ def updatereceiptdata(request):
 
 def showstudent(request):
     student=Student.objects.all().order_by('-session','branch','name')
-
     return render(request,'admindashboard/showstudent.html',{'student':student})

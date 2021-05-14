@@ -40,7 +40,28 @@ $('.image-upload-wrap').bind('dragover', function () {
 });
 
 </script>
+<style>
+    .loader {
+      border: 5px solid #C0C0C0;
+      /* Light grey */
+      border-top: 5px solid #9400D3;
+      /* Blue */
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 2s linear infinite;
+    }
 
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 <style>
 body {
   font-family: sans-serif;
@@ -290,10 +311,14 @@ body {
   <br>
   
 </div>
-<button class="file-upload-btn" type="submit" >Submit</button>
+<button class="file-upload-btn" type="submit" onclick="showloader()">Submit</button>
 
                   </form>
+                  <br>
 
+                  <div id="loader" class="loader"></div>
+                  <p id="loader_info" >Uploading....</p>
+                  
                   {{message}}
                 </div>
               </div>
@@ -308,7 +333,14 @@ body {
     </div>
   </div>
   
-  
+  <script>
+document.getElementById('loader').style.visibility = "hidden";
+document.getElementById('loader_info').style.visibility = "hidden";
+  function showloader(){
+document.getElementById('loader').style.visibility = 'visible';
+document.getElementById('loader_info').style.visibility = 'visible';
+  }
+  </script>
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/popper.min.js' %}"></script>
   <script src="{% static 'js/bootstrap-material-design.min.js' %}"></script>

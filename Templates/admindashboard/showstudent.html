@@ -176,6 +176,9 @@ body {
   <link href="{% static 'css/material-dashboard.css' %}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{% static 'css/demo.css' %}" rel="stylesheet" />
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body class="">
@@ -268,6 +271,11 @@ body {
                   <h4 class="card-title ">Students</h4>
                   <p class="card-category">Institute of Engineering and Technology, DAVV</p>
                 </div>
+                <br>
+                
+  
+  <input  id="myInput" style="width:300px; margin-left: 50px;"  type="text" placeholder="Search..">
+  <br>
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table">
@@ -291,7 +299,7 @@ body {
                           Mobile
                         </th>
                       </thead>
-                      <tbody>
+                      <tbody id="myTable">
                       {% for i in student %}
                         <tr>
                           <td>
@@ -301,7 +309,11 @@ body {
                             {{i.name}}
                           </td>
                           <td>
-                            {{i.session}}
+                          {% if i.session is not none %}
+                            20{{i.session}}
+                          {% else %}
+                          {{i.session}}
+                          {% endif %}
                           </td>
                           <td>
                             {{i.branch}}
@@ -325,7 +337,16 @@ body {
         </div>
       </div>
   
-  
+  <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/popper.min.js' %}"></script>
   <script src="{% static 'js/bootstrap-material-design.min.js' %}"></script>
